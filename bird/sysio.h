@@ -1,3 +1,11 @@
+/*
+ *	BIRD Internet Routing Daemon -- Linux Multicasting and Network Includes
+ *
+ *	(c) 1998--2000 Martin Mares <mj@ucw.cz>
+ *	(c) 2018 Stanislav Galfy <sgalfy@gmail.com>
+ *
+ *	Can be freely distributed and used under the terms of the GNU GPL.
+ */
 
 
 #ifndef HAVE_STRUCT_IP_MREQN

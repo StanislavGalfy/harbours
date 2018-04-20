@@ -2,6 +2,7 @@
  *	BIRD -- Linux Kernel Netlink Route Syncer
  *
  *	(c) 1998--2000 Martin Mares <mj@ucw.cz>
+ *	(c) 2018 Stanislav Galfy <sgalfy@gmail.com>
  *
  *	Can be freely distributed and used under the terms of the GNU GPL.
  */
@@ -31,8 +32,6 @@ static inline struct ifa * kif_get_primary_ip(struct iface *i) { return NULL; }
 
 
 /* Kernel routes */
-
-#define NL_NUM_TABLES 256
 
 struct krt_params {
   int table_id;				/* Kernel table ID we sync with */
