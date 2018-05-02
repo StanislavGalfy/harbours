@@ -272,7 +272,7 @@ krt_replace_rte(struct krt_proto *p, net *n, rte *new, rte *old,
  * @inet_sroute_status: static route status
  */
 static void
-parse_route(inet_sroute_t *sroute)
+parse_route(inet_sroute_info_t *sroute)
 {
   struct krt_proto *p = inetcfg_table;
   ip_addr dst;
@@ -328,7 +328,7 @@ parse_route(inet_sroute_t *sroute)
 void
 krt_do_scan(struct krt_proto *p UNUSED)
 {
-  inet_sroute_t *sroutes;
+  inet_sroute_info_t *sroutes;
   size_t count;
 
   int rc = inetcfg_sroute_to_array(&sroutes, &count);
