@@ -4,6 +4,7 @@ shipsources="bird-1.5.0.tar.gz \
 	Modules \
 	helenos.h \
 	krt-sys.h \
+	client.c \
 	inetcfg.c \
 	sysio.h"
 
@@ -17,6 +18,7 @@ build() {
 	run cp inetcfg.c "${shipname}-${shipversion}/sysdep/helenos"
 	run cp sysio.h "${shipname}-${shipversion}/sysdep/helenos"
 	run cp krt-sys.h "${shipname}-${shipversion}/sysdep/helenos"
+	run cp client.c "${shipname}-${shipversion}/client"
 
 	run cd "${shipname}-${shipversion}"
 	run ./configure \
@@ -36,5 +38,6 @@ package() {
 	run mkdir -p "$HSCT_MY_DIR/app/"
 	cd "${shipname}-${shipversion}"
 	run cp "${shipname}" "$HSCT_MY_DIR/app/"
+	run cp "birdcl" "$HSCT_MY_DIR/app/"
 }
 
