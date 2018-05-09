@@ -1,0 +1,43 @@
+shipname=bird
+shipversion=1.5.0
+shipsources="bird-1.5.0.tar.gz \
+	Modules \
+	helenos.h \
+	krt-sys.h \
+	client.c \
+	inetcfg.c \
+	sysio.h"
+
+shipfunnels=1
+
+build() {
+	run tar xzf "${shipname}-${shipversion}.tar.gz"
+	run mkdir -p "${shipname}-${shipversion}/sysdep/helenos"
+	run cp Modules "${shipname}-${shipversion}/sysdep/helenos"
+	run cp helenos.h "${shipname}-${shipversion}/sysdep/cf"
+	run cp inetcfg.c "${shipname}-${shipversion}/sysdep/helenos"
+	run cp sysio.h "${shipname}-${shipversion}/sysdep/helenos"
+	run cp krt-sys.h "${shipname}-${shipversion}/sysdep/helenos"
+	run cp client.c "${shipname}-${shipversion}/client"
+
+	run cd "${shipname}-${shipversion}"
+	run ./configure \
+		CC="$HSCT_CC -w" \
+		CFLAGS="$HSCT_CFLAGS" \
+		LD="$HSCT_LD" \
+		LDFLAGS="$HSCT_LDFLAGS_FOR_CC -nostdlib $ldflags_math" \
+		--host=$HSCT_GNU_TARGET \
+		--with-sysconfig=helenos \
+		--enable-client=no \
+		--enable-debug
+
+	run make -j${shipfunnels}
+}
+
+package() {
+	run mkdir -p "$HSCT_MY_DIR/app/"
+	cd "${shipname}-${shipversion}"
+	run cp "${shipname}" "$HSCT_MY_DIR/app/"
+	run cp "birdcl" "$HSCT_MY_DIR/app/"
+}
+
